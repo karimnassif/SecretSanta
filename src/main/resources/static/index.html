@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Titties</title>
+</head>
+<body>
+
+<div class="bg">
+</div>
+
+<!-- TOP OF SCREEN, FORMS AND DISPLAY AREA  -->
+<div class="modal-body row top-screen">
+    <!--New Entry Div-->
+    <div id = "new-entry" class="col-md-6">
+        <!--Initial State (Buttons)-->
+        <div class="initial" id="initial">
+            <div class="new col">
+                <h4><span class="label label-info">Haven't Signed Up Yet?</span></h4>
+                <button type="button" class="btn btn-primary" id="newEntry">New Entry</button>
+            </div>
+            <div class="signIn col">
+                <h4><span class="label label-default">Click Here To Sign In</span></h4>
+                <button type="button" class="btn btn-primary" id="signIn">Sign In</button>
+            </div>
+        </div>
+        <!--New Entry Form-->
+        <form id="entry">
+            <div id = "entry-form" class = "entry-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="newName" aria-describedby="emailHelp" placeholder="Enter name">
+                    <small id="emailHelp" class="form-text text-muted">The secretest of santas.</small>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="newAddress" aria-describedby="addressField" placeholder="Address">
+                    <small id="addressField" class="form-text text-muted">Put in yo address so you can get a gift, fool</small>
+
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="newEmail" aria-describedby="emailField" placeholder="Email">
+                    <small id="emailField" class="form-text text-muted">Pssst...can I get your email?</small>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-0">
+                        <button type="button" class="btn btn-primary" id="submit" data-toggle="modal" data-target="#exampleModal">Submit</button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger" id="cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!--Login-->
+        <div id="usernameLogin">
+            <div class="form-group">
+                <input type="text" class="form-control" id="login" aria-describedby="loginSmall" placeholder="Enter username">
+                <small id="loginSmall" class="form-text text-muted">Sign in bish.</small>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-0">
+                    <button type="button" class="btn btn-primary" id="submitLogin" data-toggle="modal" data-target="#exampleModal">Submit</button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-danger" id="cancelLogin">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Display Pair Textarea-->
+    <div id="showPair" class="col-md-6">
+        <div class="alert alert-info" role="displayPair" id="displayPair">
+            Sign in to see your secret santa here!
+        </div>
+    </div>
+</div>
+<!--Table of Entrants-->
+<div class="tableContainer">
+<div class="displayTable mx-auto table-wrapper-scroll-y">
+    <table id="table" class="table table-striped">
+        <caption class="caption table"> The Lucky (secret) Santa's!</caption>
+        <thead>
+        <tr>
+            <th data-field="name">Name</th>
+            <th data-field="address">Address</th>
+            <th data-field="email">Email</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+</div>
+<div class="space"></div>
+<!--New Entry Confirmation Modal-->
+<div class="modal fade" id="confirmEntryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">You sure fam?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"><span class="label label-default" id="modalText"></span></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="modalClose">Close</button>
+                <button type="button" class="btn btn-primary" id="modalSave">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<script src="jquery.js"></script>
+
+</body>
+</html>

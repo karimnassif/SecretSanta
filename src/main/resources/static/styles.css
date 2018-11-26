@@ -1,0 +1,65 @@
+body, html {
+    height: 100%;
+    padding-bottom: 75px;
+}
+.bg {
+    /* The image used */
+    background-image: url("secrets.png");
+
+    /* Full height */
+    height: 25%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.entry-form, #usernameLogin {
+    display: none;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+    max-height: 300px;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.caption.table {
+    text-align:center;
+    caption-side: top;
+}
+
+.displayTable{
+    width:75%;
+}
+
+.tableContainer {
+    padding-top: 65px;
+}
+
+.modal-body.row.top-screen {
+    height:40%;
+}
+
+.alert-info {
+    height:90%;
+    align-items:center;
+    text-align:center;
+}
+
+.initial {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+}
+
+.new, .signIn {
+    text-align: center;
+}
+
+.space {
+    height:75px;
+}
