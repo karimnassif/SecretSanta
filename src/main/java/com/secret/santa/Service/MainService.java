@@ -2,8 +2,8 @@ package com.secret.santa.Service;
 
 import com.secret.santa.Model.Pair;
 import com.secret.santa.Model.Person;
-import com.secret.santa.Repository.pairRepo;
 import com.secret.santa.Repository.PersonRepository;
+import com.secret.santa.Repository.pairRepo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -11,12 +11,14 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MainService {
 
     private pairRepo pairs;
     private PersonRepository persons;
+    private int counter = 0;
 
     public MainService(pairRepo pairs, PersonRepository persons) { this.pairs = pairs; this.persons = persons; }
 
@@ -43,6 +45,9 @@ public class MainService {
 
     public Person getReceiver(String username) {
         Pair pair = pairs.getByGiver(persons.getByUsername(username));
+        if(pair == null){
+            pair = new Pair();
+        }
         return pair.getReceiver();
     }
 
@@ -58,18 +63,40 @@ public class MainService {
         pairs.deleteAll();
     }
 
+    public Person getPersonByUsername(String username){
+        return persons.getByUsername(username);
+    }
+
     public List<Pair> createPairs(){
         List<Person> personList = persons.findAll();
-        Collections.shuffle(personList);
-        System.out.println(personList);
-        for(int i =0;i<=personList.size()-2;i+=2){
-            addPair(Arrays.asList(personList.get(i).getId(), personList.get(i+1).getId()));
+        List<Person> availableReceivers = personList.stream().collect(Collectors.toList());
+        personList.forEach(person -> {
+            Collections.shuffle(availableReceivers);
+            addPair(Arrays.asList(person.getId(), availableReceivers.get(0).getId()));
+            availableReceivers.remove(availableReceivers.get(0));
+        });
+        if(checkRepeats()){
+            deletePairs();
+            createPairs();
         }
         return getAllPair();
     }
 
-    public Person getPersonByUsername(String username){
-        return persons.getByUsername(username);
+    public Boolean checkRepeats(){
+        List<Pair> pairList = pairs.findAll();
+        for(Pair pair:pairList){
+            if(pair.getReceiver().getId() == pair.getGiver().getId()){
+                counter+=1;
+                System.out.println(counter);
+                return true;
+            }
+            if(getReceiver(pair.getReceiver().getUsername()) == pair.getGiver()){
+                counter+=1;
+                System.out.println(counter);
+                return true;
+            }
+        }
+        return false;
     }
 
 }

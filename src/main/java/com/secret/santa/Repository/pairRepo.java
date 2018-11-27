@@ -11,5 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface pairRepo extends JpaRepository<Pair, Long> {
 
     Pair getByGiver(Person giver);
+
 }
 

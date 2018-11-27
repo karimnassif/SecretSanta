@@ -77,7 +77,7 @@ $(document).ready(function (){
     function findPair($username) {
         var $user;
         $.ajax({
-            url: "santa/person/username/" + $username,
+            url: "/santa/person/username/" + $username,
             type: "GET",
             contentType: "application/json",
             dataType: "json",
@@ -85,18 +85,23 @@ $(document).ready(function (){
                 $user = data.name;
             }
         });
+        var fail = true;
         $.ajax({
             url: "/santa/pair/receiver/" + $username,
             type: "GET",
             contentType: "application/json",
             dataType: "json",
             success: function (data) {
-                console.log(data);
                 $('#displayPair').html("<br/>Hello " + $user +"!<br/>Your pair is: " + data.name + "!\n" + "<br/>"
                                         + "So send them something festive to: " + data.address
                                         + "!<br/>And if you need their email, its: " + data.email +".");
+            fail = false;
             }
         });
+        if(fail){
+            $('#displayPair').html("<br/><br/>No one wants to receive a gift from you. Or the draw hasn't happened yet."
+                + "<br/>Either or really.");
+        }
     }
 
     function toggleForm(){
@@ -122,12 +127,4 @@ $(document).ready(function (){
         document.body.removeChild(element);
     }
 
-    // Start file download.
-    document.getElementById("dwn-btn").addEventListener("click", function(){
-        // Generate download of file with some content
-        var text = document.username;
-        var filename = "thatSweetSweetUsernameBaby.txt";
-
-        download(filename, text);
-    }, false);
 });

@@ -4,7 +4,6 @@ import com.secret.santa.Model.Pair;
 import com.secret.santa.Model.Person;
 import com.secret.santa.Service.MainService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
